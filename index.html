@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Mood Board | Trevor Walker Photography</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -287,7 +288,7 @@
     <p class="intro-text">Answer 4 quick questions and I'll put together a personalized set of images that reflect the look and feel we can create for you.</p>
     <input class="name-input" id="client-name" type="text" placeholder="Your first name (optional)" maxlength="40">
     <div class="btn-row">
-      <button class="btn btn-primary" onclick="startQuiz()">Let's Go â†’</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Let's Go →</button>
     </div>
   </div>
 
@@ -298,48 +299,48 @@
     <p class="subtitle">Helps me understand the tone that will work best for you.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'industry', 'corporate')">
-        <span class="emoji">ðŸ¢</span>
+        <span class="emoji">🏢</span>
         <span class="label">Corporate / Executive</span>
         <span class="desc">C-suite, finance, consulting</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'real-estate')">
-        <span class="emoji">ðŸ </span>
+        <span class="emoji">🏠</span>
         <span class="label">Real Estate</span>
         <span class="desc">Agents, brokers, property</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'healthcare')">
-        <span class="emoji">âš•ï¸</span>
+        <span class="emoji">⚕️</span>
         <span class="label">Healthcare / Legal</span>
         <span class="desc">Doctors, lawyers, professionals</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'entrepreneur')">
-        <span class="emoji">ðŸš€</span>
+        <span class="emoji">🚀</span>
         <span class="label">Entrepreneur</span>
         <span class="desc">Founders, coaches, consultants</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'creative')">
-        <span class="emoji">ðŸŽ¨</span>
+        <span class="emoji">🎨</span>
         <span class="label">Creative</span>
         <span class="desc">Designers, marketers, media</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'actor')">
-        <span class="emoji">ðŸŽ­</span>
+        <span class="emoji">🎭</span>
         <span class="label">Actor / Talent</span>
         <span class="desc">Film, TV, theatre, modelling</span>
       </div>
       <div class="option-card" onclick="selectOther(this, 'industry', 'other-industry')">
-        <span class="emoji">âœï¸</span>
+        <span class="emoji">✏️</span>
         <span class="label">Other</span>
         <span class="desc">Tell us what you do</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-industry-wrap">
       <input class="other-input" id="other-industry" type="text" placeholder="e.g. Mortgage broker, Nurse, HR Manager..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('industry', 1, 2)">Skip â†’</button>
+      <button class="skip-link" onclick="skipOther('industry', 1, 2)">Skip →</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(0)">â† Back</button>
-      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next â†’</button>
+      <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
+      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next →</button>
     </div>
   </div>
 
@@ -350,38 +351,38 @@
     <p class="subtitle">Pick the feeling you want your headshot to communicate.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'vibe', 'classic')">
-        <span class="emoji">ðŸŽ©</span>
+        <span class="emoji">🎩</span>
         <span class="label">Classic & Professional</span>
         <span class="desc">Timeless, authoritative, polished</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'warm')">
-        <span class="emoji">â˜€ï¸</span>
+        <span class="emoji">☀️</span>
         <span class="label">Warm & Approachable</span>
         <span class="desc">Friendly, trustworthy, open</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'bold')">
-        <span class="emoji">âš¡</span>
+        <span class="emoji">⚡</span>
         <span class="label">Bold & Confident</span>
         <span class="desc">Strong, powerful, commanding</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'relaxed')">
-        <span class="emoji">ðŸŒ¿</span>
+        <span class="emoji">🌿</span>
         <span class="label">Natural & Relaxed</span>
         <span class="desc">Casual, authentic, real</span>
       </div>
       <div class="option-card" onclick="selectOther(this, 'vibe', 'other-vibe')">
-        <span class="emoji">âœï¸</span>
+        <span class="emoji">✏️</span>
         <span class="label">Other</span>
         <span class="desc">Describe your ideal feel</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-vibe-wrap">
       <input class="other-input" id="other-vibe" type="text" placeholder="e.g. Playful, Serious, Mysterious..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('vibe', 2, 3)">Skip â†’</button>
+      <button class="skip-link" onclick="skipOther('vibe', 2, 3)">Skip →</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(1)">â† Back</button>
-      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next â†’</button>
+      <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next →</button>
     </div>
   </div>
 
@@ -392,33 +393,33 @@
     <p class="subtitle">What kind of setting speaks to you?</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'background', 'dark')">
-        <span class="emoji">ðŸŒ‘</span>
+        <span class="emoji">🌑</span>
         <span class="label">Dark & Dramatic</span>
-        <span class="desc">Deep greys, blacks â€” timeless studio look</span>
+        <span class="desc">Deep greys, blacks — timeless studio look</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'light')">
-        <span class="emoji">â¬œ</span>
+        <span class="emoji">⬜</span>
         <span class="label">Light & Clean</span>
-        <span class="desc">White, soft grey â€” bright and modern</span>
+        <span class="desc">White, soft grey — bright and modern</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'environmental')">
-        <span class="emoji">ðŸ™ï¸</span>
+        <span class="emoji">🏙️</span>
         <span class="label">Environmental</span>
         <span class="desc">Office, outdoors, in-context</span>
       </div>
       <div class="option-card" onclick="selectOther(this, 'background', 'other-background')">
-        <span class="emoji">âœï¸</span>
+        <span class="emoji">✏️</span>
         <span class="label">Not Sure</span>
         <span class="desc">Describe or skip ahead</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-background-wrap">
       <input class="other-input" id="other-background" type="text" placeholder="e.g. Something warm, textured, colourful..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('background', 3, 4)">Skip â†’</button>
+      <button class="skip-link" onclick="skipOther('background', 3, 4)">Skip →</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(2)">â† Back</button>
-      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next â†’</button>
+      <button class="btn btn-outline" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next →</button>
     </div>
   </div>
 
@@ -429,33 +430,33 @@
     <p class="subtitle">Think about what you'd wear to meet an important client.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'formality', 'formal')">
-        <span class="emoji">ðŸ‘”</span>
+        <span class="emoji">👔</span>
         <span class="label">Full Formal</span>
-        <span class="desc">Suit, tie, blazer â€” sharp and structured</span>
+        <span class="desc">Suit, tie, blazer — sharp and structured</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'business-casual')">
-        <span class="emoji">ðŸ‘•</span>
+        <span class="emoji">👕</span>
         <span class="label">Business Casual</span>
-        <span class="desc">Blouse, smart top â€” polished but relaxed</span>
+        <span class="desc">Blouse, smart top — polished but relaxed</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'casual')">
-        <span class="emoji">ðŸ§¥</span>
+        <span class="emoji">🧥</span>
         <span class="label">Smart Casual</span>
         <span class="desc">Clean, put-together but comfortable</span>
       </div>
       <div class="option-card" onclick="selectOther(this, 'formality', 'other-formality')">
-        <span class="emoji">âœï¸</span>
+        <span class="emoji">✏️</span>
         <span class="label">Not Sure</span>
         <span class="desc">Tell us or skip ahead</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-formality-wrap">
       <input class="other-input" id="other-formality" type="text" placeholder="e.g. Somewhere between formal and casual..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('formality', 4, 5)">Skip â†’</button>
+      <button class="skip-link" onclick="skipOther('formality', 4, 5)">Skip →</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(3)">â† Back</button>
-      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board â†’</button>
+      <button class="btn btn-outline" onclick="goTo(3)">← Back</button>
+      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board →</button>
     </div>
   </div>
 
@@ -471,7 +472,7 @@
       <div class="pdf-header">
         <div>
           <div class="pdf-title" id="pdf-client-name"></div>
-          <div class="pdf-subtitle">Session Mood Board Â· Trevor Walker Photography</div>
+          <div class="pdf-subtitle">Session Mood Board · Trevor Walker Photography</div>
         </div>
         <div class="pdf-logo">
           <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="TWP">
@@ -481,15 +482,15 @@
       <div id="moodboard-grid"></div>
     </div>
 
-    <p class="image-note">âš¡ More images coming â€” this board will get smarter with a larger library.</p>
+    <p class="image-note">⚡ More images coming — this board will get smarter with a larger library.</p>
 
     <div class="btn-row">
-      <button class="btn btn-outline" id="pdf-btn" onclick="downloadPDF()">â¬‡ Download PDF</button>
-      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session â†’</a>
+      <button class="btn btn-outline" id="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session →</a>
     </div>
 
     <div class="cta-box">
-      <strong>ðŸ“¬ Send this to Trevor before your session</strong>
+      <strong>📬 Send this to Trevor before your session</strong>
       <p>Download your PDF and share it with Trevor so he can prepare the right lighting, backgrounds, and direction for your exact look.</p>
     </div>
 
@@ -503,42 +504,42 @@
 <script>
 const IMAGES = [
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907135924-GF2LKWP74R5E55V920PS/BM-2678-1_%284%29.jpg",
+    url: "imgs/img1.jpg",
     background: "dark", formality: "business-casual", vibe: "classic",
     industry: ["corporate", "healthcare", "legal", "entrepreneur"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/d6298693-0022-422f-82aa-ac1d36b711ca/CH2b0417-Edit.jpg",
+    url: "imgs/img2.jpg",
     background: "dark", formality: "business-casual", vibe: "warm",
     industry: ["entrepreneur", "real-estate", "corporate"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1736809619974-TM32YJFFQX20DBPT4A91/TRE00018bsm.jpg",
+    url: "imgs/img3.jpg",
     background: "environmental", formality: "casual", vibe: "bold",
     industry: ["actor", "creative", "entrepreneur"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/5c56454b-c37a-4854-b80e-01742f5ad5aa/KGM---Carmen0722.jpg",
+    url: "imgs/img4.jpg",
     background: "dark", formality: "business-casual", vibe: "warm",
     industry: ["real-estate", "entrepreneur", "healthcare"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/40d315c3-3642-4df7-9c92-f93fe269f085/Kim+Rhindress0249-Edit.jpg",
+    url: "imgs/img5.jpg",
     background: "dark", formality: "business-casual", vibe: "bold",
     industry: ["entrepreneur", "creative", "actor"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1690216819615-LAXA7VFBG22X145AZ3LT/Optimum+Floor+Plans+-+Thiago4391.jpg",
+    url: "imgs/img6.jpg",
     background: "dark", formality: "casual", vibe: "relaxed",
     industry: ["creative", "entrepreneur", "real-estate"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/07f89b35-57f6-4be6-8ec2-99058e181372/Chamberlain0120-%2BSteve%2BThompson%2BEdit.jpg",
+    url: "imgs/img7.jpg",
     background: "light", formality: "formal", vibe: "bold",
     industry: ["real-estate", "healthcare", "corporate", "legal"]
   },
   {
-    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907671093-I1YE2MCO1THEJSDO2RH7/Joanna1216c.jpg",
+    url: "imgs/img8.jpg",
     background: "environmental", formality: "business-casual", vibe: "classic",
     industry: ["entrepreneur", "corporate", "real-estate", "creative"]
   }
@@ -591,7 +592,7 @@ function selectOther(el, key, inputId) {
   const wrap = document.getElementById(`${inputId}-wrap`);
   if (wrap) wrap.classList.add('visible');
   document.getElementById(inputId).focus();
-  // Enable next â€” other is always skippable
+  // Enable next — other is always skippable
   const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
   const nextBtn = document.getElementById(`next-${stepMap[key]}`);
   if (nextBtn) nextBtn.disabled = false;
@@ -698,13 +699,13 @@ function downloadPDF() {
       pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
       const name = document.getElementById('client-name').value.trim() || 'moodboard';
       pdf.save(`${name.toLowerCase().replace(/\s+/g, '-')}-moodboard.pdf`);
-      btn.textContent = 'â¬‡ Download PDF';
+      btn.textContent = '⬇ Download PDF';
       btn.disabled = false;
     })
     .catch(() => {
-      btn.textContent = 'â¬‡ Download PDF';
+      btn.textContent = '⬇ Download PDF';
       btn.disabled = false;
-      alert('PDF generation failed â€” try screenshotting instead.');
+      alert('PDF generation failed — try screenshotting instead.');
     });
 }
 
