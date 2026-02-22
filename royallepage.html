@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal LePage Headshot Offer | Trevor Walker Photography</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #0e0e0e;
+    --dark2: #1a1a1a;
+    --gold: #c9a96e;
+    --light: #f5f2ee;
+    --muted: #aaa;
+    --rl-red: #CC0000;
+  }
+
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    color: var(--dark);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    background: var(--dark);
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar img {
+    height: 32px;
+    opacity: 0.95;
+  }
+  .top-bar .rl-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 52px 48px 48px;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-text { flex: 1; }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rl-red);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--light);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 400px;
+  }
+
+  .hero-price-box {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 32px 36px;
+    text-align: center;
+    min-width: 210px;
+    flex-shrink: 0;
+  }
+  .hero-price-box .label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .hero-price-box .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .hero-price-box .price-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    display: block;
+    line-height: 1.5;
+  }
+  .hero-price-box .divider {
+    border: none;
+    border-top: 1px solid #2a2a2a;
+    margin: 18px 0;
+  }
+  .hero-price-box .includes {
+    font-size: 12px;
+    color: #ccc;
+    line-height: 1.8;
+    text-align: left;
+  }
+  .hero-price-box .includes li {
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+  }
+  .hero-price-box .includes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ── SAMPLES ── */
+  .samples {
+    background: #f0ece6;
+    padding: 0;
+    display: flex;
+    height: 2.4in;
+    overflow: hidden;
+  }
+  .samples img {
+    flex: 1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-right: 3px solid #f0ece6;
+  }
+  .samples img:last-child { border-right: none; }
+
+  /* ── BODY SECTION ── */
+  .body-section {
+    padding: 44px 48px;
+    background: #fff;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rl-red);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .body-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  .feature {
+    border-left: 2px solid var(--gold);
+    padding-left: 16px;
+  }
+  .feature .feat-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+    display: block;
+  }
+  .feature .feat-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── QUOTE ── */
+  .quote-bar {
+    background: var(--dark);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--light);
+    line-height: 1.6;
+    font-style: italic;
+    flex: 1;
+  }
+  .quote-text span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+  }
+  .quote-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 36px 48px;
+    background: #faf8f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    border-top: 1px solid #e8e3dc;
+  }
+  .cta-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .cta-left p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .cta-right { text-align: right; flex-shrink: 0; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--rl-red);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+  }
+  .cta-contact {
+    font-size: 11px;
+    color: #999;
+    line-height: 1.8;
+  }
+  .cta-contact a { color: var(--dark); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--dark);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer .foot-copy {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+  .footer .foot-social {
+    font-size: 10px;
+    color: #555;
+  }
+
+  @media print {
+    body { width: 100%; }
+    .cta-btn { background: var(--rl-red) !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="Trevor Walker Photography">
+    <span class="rl-label">Exclusively for Royal LePage Kelowna</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Limited Agent Offer</div>
+      <h1>Your listing photos<br>are great.<br>Is your <span>headshot</span>?</h1>
+      <p class="hero-sub">Kelowna's most-reviewed headshot photographer is offering Royal LePage agents an exclusive express session — fast, professional, and built for busy schedules.</p>
+    </div>
+    <div class="hero-price-box">
+      <span class="label">Express Session</span>
+      <span class="price">$250</span>
+      <span class="price-sub">CAD &mdash; all in, no surprises</span>
+      <hr class="divider">
+      <ul class="includes">
+        <li>Express headshot session</li>
+        <li>2 fully retouched images</li>
+        <li>Unlimited use rights</li>
+        <li>3 business day delivery</li>
+        <li>Studio in Kelowna</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SAMPLE IMAGES -->
+  <div class="samples">
+    <img src="imgs/img7.jpg" alt="Professional headshot example">
+    <img src="imgs/img1.jpg" alt="Professional headshot example">
+    <img src="imgs/img4.jpg" alt="Professional headshot example">
+    <img src="imgs/img8.jpg" alt="Professional headshot example">
+  </div>
+
+  <!-- BODY -->
+  <div class="body-section">
+    <div class="section-label">Why it matters</div>
+    <h2>First impressions close deals before you say a word.</h2>
+
+    <div class="three-col">
+      <div class="feature">
+        <span class="feat-title">Fast &amp; Flexible</span>
+        <span class="feat-desc">Express sessions are built for your schedule. In and out, images in 3 business days.</span>
+      </div>
+      <div class="feature">
+        <span class="feat-title">400+ Five-Star Reviews</span>
+        <span class="feat-desc">The most-reviewed headshot photographer in Kelowna. Your colleagues trust us.</span>
+      </div>
+      <div class="feature">
+        <span class="feat-title">Look Like You Close</span>
+        <span class="feat-desc">Confident, approachable, on-brand. The image that gets you taken seriously online.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-bar">
+    <div class="quote-text">
+      "Trevor is very simply a genius. He puts you at ease and brings out your best. I had my new headshot on my listings within a week."
+      <span>&mdash; Carmen M., Royal LePage Agent</span>
+    </div>
+    <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-left">
+      <h3>Ready to upgrade your headshot?</h3>
+      <p>Book your express session online in 2 minutes. Spots fill fast &mdash; this offer is exclusive to Royal LePage Kelowna agents.</p>
+    </div>
+    <div class="cta-right">
+      <div>
+        <a class="cta-btn" href="https://www.trevorwalkerphotography.com/book-nowga">Book Your Session &rarr;</a>
+      </div>
+      <div class="cta-contact">
+        trevorwalkerphotography.com<br>
+        <a href="tel:2508647499">250.864.7499</a> &nbsp;|&nbsp;
+        <a href="mailto:hello@trevorwalkerphotography.com">hello@trevorwalkerphotography.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="foot-copy">Trevor Walker Photography &mdash; 1404 Hunter Court, Unit 4A, Kelowna BC &mdash; trevorwalkerphotography.com</span>
+    <span class="foot-social">@imtrevorwalker</span>
+  </div>
+
+</body>
+</html>
