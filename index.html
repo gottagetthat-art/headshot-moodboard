@@ -33,22 +33,14 @@
 
   .app {
     width: 100%;
-    max-width: 820px;
+    max-width: 860px;
     padding: 40px 24px;
     margin: 0 auto;
   }
 
-  /* LOGO */
-  .logo {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .logo img {
-    height: 36px;
-    opacity: 0.9;
-  }
+  .logo { text-align: center; margin-bottom: 48px; }
+  .logo img { height: 36px; opacity: 0.9; }
 
-  /* SCREEN */
   .screen { display: none; }
   .screen.active { display: block; }
 
@@ -60,8 +52,7 @@
     justify-content: center;
   }
   .progress-dot {
-    width: 28px;
-    height: 3px;
+    width: 28px; height: 3px;
     background: var(--dark3);
     border-radius: 2px;
     transition: background 0.3s;
@@ -125,15 +116,15 @@
   /* OPTION CARDS */
   .options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-    margin-bottom: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
   }
   .option-card {
     background: var(--dark2);
     border: 2px solid var(--dark3);
     border-radius: var(--radius);
-    padding: 22px 16px;
+    padding: 20px 14px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
@@ -141,20 +132,39 @@
   }
   .option-card:hover { border-color: var(--muted); transform: translateY(-2px); }
   .option-card.selected { border-color: var(--gold); background: #1e1a14; }
-  .option-card .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
-  .option-card .label {
-    font-size: 14px;
-    font-weight: 500;
+  .option-card .emoji { font-size: 26px; margin-bottom: 10px; display: block; }
+  .option-card .label { font-size: 13px; font-weight: 500; color: var(--light); display: block; margin-bottom: 4px; }
+  .option-card .desc { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
+  /* OTHER INPUT */
+  .other-input-wrap {
+    display: none;
+    margin-bottom: 24px;
+  }
+  .other-input-wrap.visible { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto 24px; }
+  .other-input {
+    flex: 1;
+    padding: 12px 16px;
+    background: var(--dark2);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius);
     color: var(--light);
-    display: block;
-    margin-bottom: 4px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
   }
-  .option-card .desc {
-    font-size: 12px;
+  .other-input::placeholder { color: var(--muted); }
+  .skip-link {
+    font-size: 13px;
     color: var(--muted);
-    font-weight: 300;
-    line-height: 1.5;
+    cursor: pointer;
+    text-decoration: underline;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
   }
+  .skip-link:hover { color: var(--light); }
 
   /* BUTTONS */
   .btn {
@@ -168,19 +178,13 @@
     font-family: 'Inter', sans-serif;
     transition: all 0.2s;
     letter-spacing: 0.02em;
+    text-decoration: none;
   }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--dark);
-  }
+  .btn-primary { background: var(--gold); color: var(--dark); }
   .btn-primary:hover { background: #d4b580; transform: translateY(-1px); }
-  .btn-outline {
-    background: transparent;
-    color: var(--light);
-    border: 1px solid var(--dark3);
-  }
+  .btn-outline { background: transparent; color: var(--light); border: 1px solid var(--dark3); }
   .btn-outline:hover { border-color: var(--muted); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
 
   .btn-row {
     display: flex;
@@ -203,24 +207,9 @@
     border-radius: 6px;
     width: 100%;
     display: block;
-    transition: transform 0.2s;
-  }
-  .mb-image:hover { transform: scale(1.02); }
-
-  .results-header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
-  .results-header .name-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
   }
 
-  /* PDF CAPTURE AREA */
+  /* PDF AREA */
   #pdf-area {
     background: #0e0e0e;
     padding: 32px;
@@ -231,25 +220,39 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--dark3);
   }
   .pdf-title { font-family: 'Playfair Display', serif; font-size: 18px; }
   .pdf-subtitle { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .pdf-logo img { height: 24px; opacity: 0.7; }
-  .pdf-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
+  .pdf-logo img { height: 22px; opacity: 0.7; }
+  .pdf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .pdf-tag {
     padding: 4px 12px;
     border: 1px solid var(--dark3);
     border-radius: 20px;
     font-size: 12px;
     color: var(--muted);
+  }
+
+  .results-header { text-align: center; margin-bottom: 28px; }
+  .results-header .name-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* IMAGE NOTE */
+  .image-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-style: italic;
   }
 
   /* CTA */
@@ -261,16 +264,8 @@
     text-align: center;
     margin-top: 24px;
   }
-  .cta-box p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 8px;
-    font-weight: 300;
-  }
+  .cta-box p { color: var(--muted); font-size: 14px; margin-top: 8px; font-weight: 300; }
 
-  /* UTILS */
-  .text-center { text-align: center; }
-  .mt-16 { margin-top: 16px; }
   .mt-24 { margin-top: 24px; }
 
   @media (max-width: 480px) {
@@ -289,10 +284,10 @@
   <!-- SCREEN 0: INTRO -->
   <div class="screen active" id="screen-0">
     <h1>Build Your Mood Board</h1>
-    <p class="intro-text">Answer 4 quick questions and I'll show you a personalized set of images that reflect the look and feel we can create together in your session.</p>
-    <input class="name-input" id="client-name" type="text" placeholder="Your first name" maxlength="40">
+    <p class="intro-text">Answer 4 quick questions and I'll put together a personalized set of images that reflect the look and feel we can create for you.</p>
+    <input class="name-input" id="client-name" type="text" placeholder="Your first name (optional)" maxlength="40">
     <div class="btn-row">
-      <button class="btn btn-primary" onclick="startQuiz()">Let's Go →</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Let's Go â†’</button>
     </div>
   </div>
 
@@ -300,42 +295,51 @@
   <div class="screen" id="screen-1">
     <div class="progress" id="progress-1"></div>
     <h2>What do you do?</h2>
-    <p class="subtitle">This helps me understand the tone that will work best for you.</p>
+    <p class="subtitle">Helps me understand the tone that will work best for you.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'industry', 'corporate')">
-        <span class="emoji">🏢</span>
+        <span class="emoji">ðŸ¢</span>
         <span class="label">Corporate / Executive</span>
         <span class="desc">C-suite, finance, consulting</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'real-estate')">
-        <span class="emoji">🏠</span>
+        <span class="emoji">ðŸ </span>
         <span class="label">Real Estate</span>
         <span class="desc">Agents, brokers, property</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'healthcare')">
-        <span class="emoji">⚕️</span>
+        <span class="emoji">âš•ï¸</span>
         <span class="label">Healthcare / Legal</span>
         <span class="desc">Doctors, lawyers, professionals</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'entrepreneur')">
-        <span class="emoji">🚀</span>
+        <span class="emoji">ðŸš€</span>
         <span class="label">Entrepreneur</span>
         <span class="desc">Founders, coaches, consultants</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'creative')">
-        <span class="emoji">🎨</span>
+        <span class="emoji">ðŸŽ¨</span>
         <span class="label">Creative</span>
         <span class="desc">Designers, marketers, media</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'actor')">
-        <span class="emoji">🎭</span>
+        <span class="emoji">ðŸŽ­</span>
         <span class="label">Actor / Talent</span>
         <span class="desc">Film, TV, theatre, modelling</span>
       </div>
+      <div class="option-card" onclick="selectOther(this, 'industry', 'other-industry')">
+        <span class="emoji">âœï¸</span>
+        <span class="label">Other</span>
+        <span class="desc">Tell us what you do</span>
+      </div>
+    </div>
+    <div class="other-input-wrap" id="other-industry-wrap">
+      <input class="other-input" id="other-industry" type="text" placeholder="e.g. Mortgage broker, Nurse, HR Manager..." maxlength="60">
+      <button class="skip-link" onclick="skipOther('industry', 1, 2)">Skip â†’</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
-      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(0)">â† Back</button>
+      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next â†’</button>
     </div>
   </div>
 
@@ -346,29 +350,38 @@
     <p class="subtitle">Pick the feeling you want your headshot to communicate.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'vibe', 'classic')">
-        <span class="emoji">🎩</span>
+        <span class="emoji">ðŸŽ©</span>
         <span class="label">Classic & Professional</span>
         <span class="desc">Timeless, authoritative, polished</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'warm')">
-        <span class="emoji">☀️</span>
+        <span class="emoji">â˜€ï¸</span>
         <span class="label">Warm & Approachable</span>
         <span class="desc">Friendly, trustworthy, open</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'bold')">
-        <span class="emoji">⚡</span>
+        <span class="emoji">âš¡</span>
         <span class="label">Bold & Confident</span>
         <span class="desc">Strong, powerful, commanding</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'relaxed')">
-        <span class="emoji">🌿</span>
+        <span class="emoji">ðŸŒ¿</span>
         <span class="label">Natural & Relaxed</span>
         <span class="desc">Casual, authentic, real</span>
       </div>
+      <div class="option-card" onclick="selectOther(this, 'vibe', 'other-vibe')">
+        <span class="emoji">âœï¸</span>
+        <span class="label">Other</span>
+        <span class="desc">Describe your ideal feel</span>
+      </div>
+    </div>
+    <div class="other-input-wrap" id="other-vibe-wrap">
+      <input class="other-input" id="other-vibe" type="text" placeholder="e.g. Playful, Serious, Mysterious..." maxlength="60">
+      <button class="skip-link" onclick="skipOther('vibe', 2, 3)">Skip â†’</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
-      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(1)">â† Back</button>
+      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next â†’</button>
     </div>
   </div>
 
@@ -379,24 +392,33 @@
     <p class="subtitle">What kind of setting speaks to you?</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'background', 'dark')">
-        <span class="emoji">🌑</span>
+        <span class="emoji">ðŸŒ‘</span>
         <span class="label">Dark & Dramatic</span>
-        <span class="desc">Deep greys, blacks — timeless studio look</span>
+        <span class="desc">Deep greys, blacks â€” timeless studio look</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'light')">
-        <span class="emoji">⬜</span>
+        <span class="emoji">â¬œ</span>
         <span class="label">Light & Clean</span>
-        <span class="desc">White, soft grey — bright and modern</span>
+        <span class="desc">White, soft grey â€” bright and modern</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'environmental')">
-        <span class="emoji">🏙️</span>
+        <span class="emoji">ðŸ™ï¸</span>
         <span class="label">Environmental</span>
         <span class="desc">Office, outdoors, in-context</span>
       </div>
+      <div class="option-card" onclick="selectOther(this, 'background', 'other-background')">
+        <span class="emoji">âœï¸</span>
+        <span class="label">Not Sure</span>
+        <span class="desc">Describe or skip ahead</span>
+      </div>
+    </div>
+    <div class="other-input-wrap" id="other-background-wrap">
+      <input class="other-input" id="other-background" type="text" placeholder="e.g. Something warm, textured, colourful..." maxlength="60">
+      <button class="skip-link" onclick="skipOther('background', 3, 4)">Skip â†’</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(2)">← Back</button>
-      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(2)">â† Back</button>
+      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next â†’</button>
     </div>
   </div>
 
@@ -404,27 +426,36 @@
   <div class="screen" id="screen-4">
     <div class="progress" id="progress-4"></div>
     <h2>How formal?</h2>
-    <p class="subtitle">Think about what you'd typically wear to meet an important client.</p>
+    <p class="subtitle">Think about what you'd wear to meet an important client.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'formality', 'formal')">
-        <span class="emoji">👔</span>
+        <span class="emoji">ðŸ‘”</span>
         <span class="label">Full Formal</span>
-        <span class="desc">Suit, tie, blazer — sharp and structured</span>
+        <span class="desc">Suit, tie, blazer â€” sharp and structured</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'business-casual')">
-        <span class="emoji">👕</span>
+        <span class="emoji">ðŸ‘•</span>
         <span class="label">Business Casual</span>
-        <span class="desc">Blouse, smart top, no tie — polished but relaxed</span>
+        <span class="desc">Blouse, smart top â€” polished but relaxed</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'casual')">
-        <span class="emoji">🧥</span>
+        <span class="emoji">ðŸ§¥</span>
         <span class="label">Smart Casual</span>
         <span class="desc">Clean, put-together but comfortable</span>
       </div>
+      <div class="option-card" onclick="selectOther(this, 'formality', 'other-formality')">
+        <span class="emoji">âœï¸</span>
+        <span class="label">Not Sure</span>
+        <span class="desc">Tell us or skip ahead</span>
+      </div>
+    </div>
+    <div class="other-input-wrap" id="other-formality-wrap">
+      <input class="other-input" id="other-formality" type="text" placeholder="e.g. Somewhere between formal and casual..." maxlength="60">
+      <button class="skip-link" onclick="skipOther('formality', 4, 5)">Skip â†’</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(3)">← Back</button>
-      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board →</button>
+      <button class="btn btn-outline" onclick="goTo(3)">â† Back</button>
+      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board â†’</button>
     </div>
   </div>
 
@@ -433,33 +464,33 @@
     <div class="results-header">
       <div class="name-label" id="results-name-label"></div>
       <h2>Your Mood Board</h2>
-      <p class="subtitle">Based on your preferences, here's the look and feel we can create together.</p>
+      <p class="subtitle">Here's the look and feel we can create together in your session.</p>
     </div>
 
     <div id="pdf-area">
       <div class="pdf-header">
         <div>
           <div class="pdf-title" id="pdf-client-name"></div>
-          <div class="pdf-subtitle">Session Mood Board · Trevor Walker Photography</div>
+          <div class="pdf-subtitle">Session Mood Board Â· Trevor Walker Photography</div>
         </div>
         <div class="pdf-logo">
-          <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="Trevor Walker Photography">
+          <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="TWP">
         </div>
       </div>
-
       <div class="pdf-tags" id="pdf-tags"></div>
-
       <div id="moodboard-grid"></div>
     </div>
 
+    <p class="image-note">âš¡ More images coming â€” this board will get smarter with a larger library.</p>
+
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="downloadPDF()">⬇ Download PDF</button>
-      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session →</a>
+      <button class="btn btn-outline" id="pdf-btn" onclick="downloadPDF()">â¬‡ Download PDF</button>
+      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session â†’</a>
     </div>
 
     <div class="cta-box">
-      <strong>📬 Send this to Trevor before your session</strong>
-      <p>Share your PDF with Trevor ahead of your shoot so he can prepare the right lighting, backgrounds, and direction for your look.</p>
+      <strong>ðŸ“¬ Send this to Trevor before your session</strong>
+      <p>Download your PDF and share it with Trevor so he can prepare the right lighting, backgrounds, and direction for your exact look.</p>
     </div>
 
     <div class="btn-row mt-24">
@@ -474,7 +505,7 @@ const IMAGES = [
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907135924-GF2LKWP74R5E55V920PS/BM-2678-1_%284%29.jpg",
     background: "dark", formality: "business-casual", vibe: "classic",
-    industry: ["corporate", "healthcare", "legal"]
+    industry: ["corporate", "healthcare", "legal", "entrepreneur"]
   },
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/d6298693-0022-422f-82aa-ac1d36b711ca/CH2b0417-Edit.jpg",
@@ -489,12 +520,12 @@ const IMAGES = [
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/5c56454b-c37a-4854-b80e-01742f5ad5aa/KGM---Carmen0722.jpg",
     background: "dark", formality: "business-casual", vibe: "warm",
-    industry: ["real-estate", "entrepreneur", "corporate"]
+    industry: ["real-estate", "entrepreneur", "healthcare"]
   },
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/40d315c3-3642-4df7-9c92-f93fe269f085/Kim+Rhindress0249-Edit.jpg",
     background: "dark", formality: "business-casual", vibe: "bold",
-    industry: ["entrepreneur", "creative", "corporate"]
+    industry: ["entrepreneur", "creative", "actor"]
   },
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1690216819615-LAXA7VFBG22X145AZ3LT/Optimum+Floor+Plans+-+Thiago4391.jpg",
@@ -509,16 +540,16 @@ const IMAGES = [
   {
     url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907671093-I1YE2MCO1THEJSDO2RH7/Joanna1216c.jpg",
     background: "environmental", formality: "business-casual", vibe: "classic",
-    industry: ["entrepreneur", "corporate", "real-estate"]
+    industry: ["entrepreneur", "corporate", "real-estate", "creative"]
   }
 ];
 
 const answers = { industry: null, vibe: null, background: null, formality: null };
+const otherText = { industry: '', vibe: '', background: '', formality: '' };
 const STEPS = 4;
 
 function buildProgress(step) {
-  const id = `progress-${step}`;
-  const el = document.getElementById(id);
+  const el = document.getElementById(`progress-${step}`);
   if (!el) return;
   el.innerHTML = '';
   for (let i = 1; i <= STEPS; i++) {
@@ -531,42 +562,97 @@ function buildProgress(step) {
 function goTo(step) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(`screen-${step}`).classList.add('active');
-  if (step > 0) buildProgress(step);
+  if (step > 0 && step <= 4) buildProgress(step);
   window.scrollTo(0, 0);
 }
 
-function startQuiz() {
-  goTo(1);
-}
+function startQuiz() { goTo(1); }
 
 function select(el, key, value) {
   const parent = el.parentElement;
   parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   answers[key] = value;
+  otherText[key] = '';
+  // Hide other input
+  const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
+  const step = stepMap[key];
+  const wrap = document.getElementById(`other-${key}-wrap`);
+  if (wrap) wrap.classList.remove('visible');
+  const nextBtn = document.getElementById(`next-${step}`);
+  if (nextBtn) nextBtn.disabled = false;
+}
+
+function selectOther(el, key, inputId) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[key] = 'other';
+  const wrap = document.getElementById(`${inputId}-wrap`);
+  if (wrap) wrap.classList.add('visible');
+  document.getElementById(inputId).focus();
+  // Enable next â€” other is always skippable
   const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
   const nextBtn = document.getElementById(`next-${stepMap[key]}`);
   if (nextBtn) nextBtn.disabled = false;
 }
 
+function skipOther(key, currentStep, nextStep) {
+  answers[key] = 'other';
+  otherText[key] = '';
+  if (nextStep === 5) {
+    showResults();
+  } else {
+    goTo(nextStep);
+  }
+}
+
+// Watch other text inputs
+['industry', 'vibe', 'background', 'formality'].forEach(key => {
+  const inputId = `other-${key}`;
+  const el = document.getElementById(inputId);
+  if (el) {
+    el.addEventListener('input', () => {
+      otherText[key] = el.value.trim();
+    });
+  }
+});
+
 function scoreImage(img) {
   let score = 0;
-  if (img.industry.includes(answers.industry)) score += 3;
-  if (img.vibe === answers.vibe) score += 2;
-  if (img.background === answers.background) score += 2;
-  if (img.formality === answers.formality) score += 1;
+  // 'other' answers get partial score against all images to show variety
+  if (answers.industry === 'other') score += 1;
+  else if (img.industry.includes(answers.industry)) score += 3;
+  if (answers.vibe === 'other') score += 1;
+  else if (img.vibe === answers.vibe) score += 2;
+  if (answers.background === 'other' || !answers.background) score += 1;
+  else if (img.background === answers.background) score += 2;
+  if (answers.formality === 'other' || !answers.formality) score += 1;
+  else if (img.formality === answers.formality) score += 1;
+  // Tiebreaker: small random nudge so same-score images shuffle
+  score += Math.random() * 0.4;
   return score;
 }
 
-function showResults() {
-  const name = document.getElementById('client-name').value.trim() || 'Your';
+function getTagLabel(key, val) {
+  const labels = {
+    industry: { corporate: 'Corporate/Executive', 'real-estate': 'Real Estate', healthcare: 'Healthcare/Legal', entrepreneur: 'Entrepreneur', creative: 'Creative', actor: 'Actor/Talent', other: '' },
+    vibe: { classic: 'Classic & Professional', warm: 'Warm & Approachable', bold: 'Bold & Confident', relaxed: 'Natural & Relaxed', other: '' },
+    background: { dark: 'Dark Background', light: 'Light/Clean', environmental: 'Environmental', other: '' },
+    formality: { formal: 'Full Formal', 'business-casual': 'Business Casual', casual: 'Smart Casual', other: '' }
+  };
+  if (val === 'other' && otherText[key]) return otherText[key];
+  if (val === 'other') return null;
+  return labels[key]?.[val] || val;
+}
 
-  // Score and sort images
+function showResults() {
+  const name = document.getElementById('client-name').value.trim();
+
   const scored = IMAGES.map(img => ({ ...img, score: scoreImage(img) }));
   scored.sort((a, b) => b.score - a.score);
   const top = scored.slice(0, 6);
 
-  // Build grid
   const grid = document.getElementById('moodboard-grid');
   grid.innerHTML = '';
   top.forEach(img => {
@@ -578,24 +664,19 @@ function showResults() {
     grid.appendChild(el);
   });
 
-  // Set names and tags
-  const nameLabel = name === 'Your' ? 'Your' : `${name}'s`;
+  const nameLabel = name ? `${name}'s` : 'Your';
   document.getElementById('results-name-label').textContent = nameLabel;
   document.getElementById('pdf-client-name').textContent = `${nameLabel} Mood Board`;
-
-  const labelMap = {
-    industry: { corporate: 'Corporate/Executive', 'real-estate': 'Real Estate', healthcare: 'Healthcare/Legal', entrepreneur: 'Entrepreneur', creative: 'Creative', actor: 'Actor/Talent' },
-    vibe: { classic: 'Classic & Professional', warm: 'Warm & Approachable', bold: 'Bold & Confident', relaxed: 'Natural & Relaxed' },
-    background: { dark: 'Dark Background', light: 'Light Background', environmental: 'Environmental' },
-    formality: { formal: 'Full Formal', 'business-casual': 'Business Casual', casual: 'Smart Casual' }
-  };
 
   const tagsEl = document.getElementById('pdf-tags');
   tagsEl.innerHTML = '';
   ['industry', 'vibe', 'background', 'formality'].forEach(key => {
+    if (!answers[key]) return;
+    const label = getTagLabel(key, answers[key]);
+    if (!label) return;
     const span = document.createElement('span');
     span.className = 'pdf-tag';
-    span.textContent = labelMap[key][answers[key]] || answers[key];
+    span.textContent = label;
     tagsEl.appendChild(span);
   });
 
@@ -603,37 +684,37 @@ function showResults() {
 }
 
 function downloadPDF() {
-  const btn = document.querySelector('.btn-outline');
+  const btn = document.getElementById('pdf-btn');
   btn.textContent = 'Generating...';
   btn.disabled = true;
 
   const el = document.getElementById('pdf-area');
-  html2canvas(el, {
-    backgroundColor: '#0e0e0e',
-    scale: 2,
-    useCORS: true,
-    allowTaint: false
-  }).then(canvas => {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-    const w = pdf.internal.pageSize.getWidth();
-    const h = (canvas.height * w) / canvas.width;
-    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
-    const name = document.getElementById('client-name').value.trim() || 'moodboard';
-    pdf.save(`${name.toLowerCase().replace(/\s+/g, '-')}-moodboard.pdf`);
-    btn.textContent = '⬇ Download PDF';
-    btn.disabled = false;
-  }).catch(() => {
-    btn.textContent = '⬇ Download PDF';
-    btn.disabled = false;
-    alert('PDF generation failed. Try screenshotting instead.');
-  });
+  html2canvas(el, { backgroundColor: '#0e0e0e', scale: 2, useCORS: true, allowTaint: false })
+    .then(canvas => {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const w = pdf.internal.pageSize.getWidth();
+      const h = (canvas.height * w) / canvas.width;
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
+      const name = document.getElementById('client-name').value.trim() || 'moodboard';
+      pdf.save(`${name.toLowerCase().replace(/\s+/g, '-')}-moodboard.pdf`);
+      btn.textContent = 'â¬‡ Download PDF';
+      btn.disabled = false;
+    })
+    .catch(() => {
+      btn.textContent = 'â¬‡ Download PDF';
+      btn.disabled = false;
+      alert('PDF generation failed â€” try screenshotting instead.');
+    });
 }
 
 function restart() {
   Object.keys(answers).forEach(k => answers[k] = null);
+  Object.keys(otherText).forEach(k => otherText[k] = '');
   document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
   document.querySelectorAll('.btn-primary[id^="next-"]').forEach(b => b.disabled = true);
+  document.querySelectorAll('.other-input-wrap').forEach(w => w.classList.remove('visible'));
+  document.querySelectorAll('.other-input').forEach(i => i.value = '');
   document.getElementById('client-name').value = '';
   goTo(0);
 }
