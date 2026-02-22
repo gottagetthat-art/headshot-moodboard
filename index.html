@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Mood Board | Trevor Walker Photography</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #0e0e0e;
+    --dark2: #1a1a1a;
+    --dark3: #252525;
+    --gold: #c9a96e;
+    --light: #f5f2ee;
+    --muted: #888;
+    --radius: 8px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app {
+    width: 100%;
+    max-width: 820px;
+    padding: 40px 24px;
+    margin: 0 auto;
+  }
+
+  /* LOGO */
+  .logo {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .logo img {
+    height: 36px;
+    opacity: 0.9;
+  }
+
+  /* SCREEN */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* PROGRESS */
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+  .progress-dot {
+    width: 28px;
+    height: 3px;
+    background: var(--dark3);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .progress-dot.done { background: var(--gold); }
+  .progress-dot.active { background: var(--light); }
+
+  /* HEADINGS */
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 400;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  /* INTRO */
+  .intro-text {
+    max-width: 520px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .name-input {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 32px;
+    padding: 14px 20px;
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    border-radius: var(--radius);
+    color: var(--light);
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  .name-input::placeholder { color: var(--muted); }
+  .name-input:focus { border-color: var(--gold); }
+
+  /* OPTION CARDS */
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .option-card {
+    background: var(--dark2);
+    border: 2px solid var(--dark3);
+    border-radius: var(--radius);
+    padding: 22px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .option-card:hover { border-color: var(--muted); transform: translateY(-2px); }
+  .option-card.selected { border-color: var(--gold); background: #1e1a14; }
+  .option-card .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+  .option-card .label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--light);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .option-card .desc {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+  }
+  .btn-primary:hover { background: #d4b580; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--light);
+    border: 1px solid var(--dark3);
+  }
+  .btn-outline:hover { border-color: var(--muted); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  /* MOOD BOARD */
+  #moodboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .mb-image {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+    transition: transform 0.2s;
+  }
+  .mb-image:hover { transform: scale(1.02); }
+
+  .results-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .results-header .name-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* PDF CAPTURE AREA */
+  #pdf-area {
+    background: #0e0e0e;
+    padding: 32px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
+  .pdf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--dark3);
+  }
+  .pdf-title { font-family: 'Playfair Display', serif; font-size: 18px; }
+  .pdf-subtitle { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .pdf-logo img { height: 24px; opacity: 0.7; }
+  .pdf-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .pdf-tag {
+    padding: 4px 12px;
+    border: 1px solid var(--dark3);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* CTA */
+  .cta-box {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .cta-box p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 300;
+  }
+
+  /* UTILS */
+  .text-center { text-align: center; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+
+  @media (max-width: 480px) {
+    #moodboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .options { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="Trevor Walker Photography">
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screen-0">
+    <h1>Build Your Mood Board</h1>
+    <p class="intro-text">Answer 4 quick questions and I'll show you a personalized set of images that reflect the look and feel we can create together in your session.</p>
+    <input class="name-input" id="client-name" type="text" placeholder="Your first name" maxlength="40">
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="startQuiz()">Let's Go →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: INDUSTRY -->
+  <div class="screen" id="screen-1">
+    <div class="progress" id="progress-1"></div>
+    <h2>What do you do?</h2>
+    <p class="subtitle">This helps me understand the tone that will work best for you.</p>
+    <div class="options">
+      <div class="option-card" onclick="select(this, 'industry', 'corporate')">
+        <span class="emoji">🏢</span>
+        <span class="label">Corporate / Executive</span>
+        <span class="desc">C-suite, finance, consulting</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'industry', 'real-estate')">
+        <span class="emoji">🏠</span>
+        <span class="label">Real Estate</span>
+        <span class="desc">Agents, brokers, property</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'industry', 'healthcare')">
+        <span class="emoji">⚕️</span>
+        <span class="label">Healthcare / Legal</span>
+        <span class="desc">Doctors, lawyers, professionals</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'industry', 'entrepreneur')">
+        <span class="emoji">🚀</span>
+        <span class="label">Entrepreneur</span>
+        <span class="desc">Founders, coaches, consultants</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'industry', 'creative')">
+        <span class="emoji">🎨</span>
+        <span class="label">Creative</span>
+        <span class="desc">Designers, marketers, media</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'industry', 'actor')">
+        <span class="emoji">🎭</span>
+        <span class="label">Actor / Talent</span>
+        <span class="desc">Film, TV, theatre, modelling</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
+      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: VIBE -->
+  <div class="screen" id="screen-2">
+    <div class="progress" id="progress-2"></div>
+    <h2>What's your vibe?</h2>
+    <p class="subtitle">Pick the feeling you want your headshot to communicate.</p>
+    <div class="options">
+      <div class="option-card" onclick="select(this, 'vibe', 'classic')">
+        <span class="emoji">🎩</span>
+        <span class="label">Classic & Professional</span>
+        <span class="desc">Timeless, authoritative, polished</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'vibe', 'warm')">
+        <span class="emoji">☀️</span>
+        <span class="label">Warm & Approachable</span>
+        <span class="desc">Friendly, trustworthy, open</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'vibe', 'bold')">
+        <span class="emoji">⚡</span>
+        <span class="label">Bold & Confident</span>
+        <span class="desc">Strong, powerful, commanding</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'vibe', 'relaxed')">
+        <span class="emoji">🌿</span>
+        <span class="label">Natural & Relaxed</span>
+        <span class="desc">Casual, authentic, real</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: BACKGROUND -->
+  <div class="screen" id="screen-3">
+    <div class="progress" id="progress-3"></div>
+    <h2>Background preference?</h2>
+    <p class="subtitle">What kind of setting speaks to you?</p>
+    <div class="options">
+      <div class="option-card" onclick="select(this, 'background', 'dark')">
+        <span class="emoji">🌑</span>
+        <span class="label">Dark & Dramatic</span>
+        <span class="desc">Deep greys, blacks — timeless studio look</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'background', 'light')">
+        <span class="emoji">⬜</span>
+        <span class="label">Light & Clean</span>
+        <span class="desc">White, soft grey — bright and modern</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'background', 'environmental')">
+        <span class="emoji">🏙️</span>
+        <span class="label">Environmental</span>
+        <span class="desc">Office, outdoors, in-context</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: FORMALITY -->
+  <div class="screen" id="screen-4">
+    <div class="progress" id="progress-4"></div>
+    <h2>How formal?</h2>
+    <p class="subtitle">Think about what you'd typically wear to meet an important client.</p>
+    <div class="options">
+      <div class="option-card" onclick="select(this, 'formality', 'formal')">
+        <span class="emoji">👔</span>
+        <span class="label">Full Formal</span>
+        <span class="desc">Suit, tie, blazer — sharp and structured</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'formality', 'business-casual')">
+        <span class="emoji">👕</span>
+        <span class="label">Business Casual</span>
+        <span class="desc">Blouse, smart top, no tie — polished but relaxed</span>
+      </div>
+      <div class="option-card" onclick="select(this, 'formality', 'casual')">
+        <span class="emoji">🧥</span>
+        <span class="label">Smart Casual</span>
+        <span class="desc">Clean, put-together but comfortable</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goTo(3)">← Back</button>
+      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: RESULTS -->
+  <div class="screen" id="screen-5">
+    <div class="results-header">
+      <div class="name-label" id="results-name-label"></div>
+      <h2>Your Mood Board</h2>
+      <p class="subtitle">Based on your preferences, here's the look and feel we can create together.</p>
+    </div>
+
+    <div id="pdf-area">
+      <div class="pdf-header">
+        <div>
+          <div class="pdf-title" id="pdf-client-name"></div>
+          <div class="pdf-subtitle">Session Mood Board · Trevor Walker Photography</div>
+        </div>
+        <div class="pdf-logo">
+          <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="Trevor Walker Photography">
+        </div>
+      </div>
+
+      <div class="pdf-tags" id="pdf-tags"></div>
+
+      <div id="moodboard-grid"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="downloadPDF()">⬇ Download PDF</button>
+      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session →</a>
+    </div>
+
+    <div class="cta-box">
+      <strong>📬 Send this to Trevor before your session</strong>
+      <p>Share your PDF with Trevor ahead of your shoot so he can prepare the right lighting, backgrounds, and direction for your look.</p>
+    </div>
+
+    <div class="btn-row mt-24">
+      <button class="btn btn-outline" onclick="restart()">Start Over</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const IMAGES = [
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907135924-GF2LKWP74R5E55V920PS/BM-2678-1_%284%29.jpg",
+    background: "dark", formality: "business-casual", vibe: "classic",
+    industry: ["corporate", "healthcare", "legal"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/d6298693-0022-422f-82aa-ac1d36b711ca/CH2b0417-Edit.jpg",
+    background: "dark", formality: "business-casual", vibe: "warm",
+    industry: ["entrepreneur", "real-estate", "corporate"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1736809619974-TM32YJFFQX20DBPT4A91/TRE00018bsm.jpg",
+    background: "environmental", formality: "casual", vibe: "bold",
+    industry: ["actor", "creative", "entrepreneur"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/5c56454b-c37a-4854-b80e-01742f5ad5aa/KGM---Carmen0722.jpg",
+    background: "dark", formality: "business-casual", vibe: "warm",
+    industry: ["real-estate", "entrepreneur", "corporate"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/40d315c3-3642-4df7-9c92-f93fe269f085/Kim+Rhindress0249-Edit.jpg",
+    background: "dark", formality: "business-casual", vibe: "bold",
+    industry: ["entrepreneur", "creative", "corporate"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1690216819615-LAXA7VFBG22X145AZ3LT/Optimum+Floor+Plans+-+Thiago4391.jpg",
+    background: "dark", formality: "casual", vibe: "relaxed",
+    industry: ["creative", "entrepreneur", "real-estate"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/07f89b35-57f6-4be6-8ec2-99058e181372/Chamberlain0120-%2BSteve%2BThompson%2BEdit.jpg",
+    background: "light", formality: "formal", vibe: "bold",
+    industry: ["real-estate", "healthcare", "corporate", "legal"]
+  },
+  {
+    url: "https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/1760907671093-I1YE2MCO1THEJSDO2RH7/Joanna1216c.jpg",
+    background: "environmental", formality: "business-casual", vibe: "classic",
+    industry: ["entrepreneur", "corporate", "real-estate"]
+  }
+];
+
+const answers = { industry: null, vibe: null, background: null, formality: null };
+const STEPS = 4;
+
+function buildProgress(step) {
+  const id = `progress-${step}`;
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = '';
+  for (let i = 1; i <= STEPS; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
+    el.appendChild(dot);
+  }
+}
+
+function goTo(step) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(`screen-${step}`).classList.add('active');
+  if (step > 0) buildProgress(step);
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  goTo(1);
+}
+
+function select(el, key, value) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[key] = value;
+  const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
+  const nextBtn = document.getElementById(`next-${stepMap[key]}`);
+  if (nextBtn) nextBtn.disabled = false;
+}
+
+function scoreImage(img) {
+  let score = 0;
+  if (img.industry.includes(answers.industry)) score += 3;
+  if (img.vibe === answers.vibe) score += 2;
+  if (img.background === answers.background) score += 2;
+  if (img.formality === answers.formality) score += 1;
+  return score;
+}
+
+function showResults() {
+  const name = document.getElementById('client-name').value.trim() || 'Your';
+
+  // Score and sort images
+  const scored = IMAGES.map(img => ({ ...img, score: scoreImage(img) }));
+  scored.sort((a, b) => b.score - a.score);
+  const top = scored.slice(0, 6);
+
+  // Build grid
+  const grid = document.getElementById('moodboard-grid');
+  grid.innerHTML = '';
+  top.forEach(img => {
+    const el = document.createElement('img');
+    el.src = img.url;
+    el.className = 'mb-image';
+    el.alt = 'Headshot example';
+    el.crossOrigin = 'anonymous';
+    grid.appendChild(el);
+  });
+
+  // Set names and tags
+  const nameLabel = name === 'Your' ? 'Your' : `${name}'s`;
+  document.getElementById('results-name-label').textContent = nameLabel;
+  document.getElementById('pdf-client-name').textContent = `${nameLabel} Mood Board`;
+
+  const labelMap = {
+    industry: { corporate: 'Corporate/Executive', 'real-estate': 'Real Estate', healthcare: 'Healthcare/Legal', entrepreneur: 'Entrepreneur', creative: 'Creative', actor: 'Actor/Talent' },
+    vibe: { classic: 'Classic & Professional', warm: 'Warm & Approachable', bold: 'Bold & Confident', relaxed: 'Natural & Relaxed' },
+    background: { dark: 'Dark Background', light: 'Light Background', environmental: 'Environmental' },
+    formality: { formal: 'Full Formal', 'business-casual': 'Business Casual', casual: 'Smart Casual' }
+  };
+
+  const tagsEl = document.getElementById('pdf-tags');
+  tagsEl.innerHTML = '';
+  ['industry', 'vibe', 'background', 'formality'].forEach(key => {
+    const span = document.createElement('span');
+    span.className = 'pdf-tag';
+    span.textContent = labelMap[key][answers[key]] || answers[key];
+    tagsEl.appendChild(span);
+  });
+
+  goTo(5);
+}
+
+function downloadPDF() {
+  const btn = document.querySelector('.btn-outline');
+  btn.textContent = 'Generating...';
+  btn.disabled = true;
+
+  const el = document.getElementById('pdf-area');
+  html2canvas(el, {
+    backgroundColor: '#0e0e0e',
+    scale: 2,
+    useCORS: true,
+    allowTaint: false
+  }).then(canvas => {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+    const w = pdf.internal.pageSize.getWidth();
+    const h = (canvas.height * w) / canvas.width;
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
+    const name = document.getElementById('client-name').value.trim() || 'moodboard';
+    pdf.save(`${name.toLowerCase().replace(/\s+/g, '-')}-moodboard.pdf`);
+    btn.textContent = '⬇ Download PDF';
+    btn.disabled = false;
+  }).catch(() => {
+    btn.textContent = '⬇ Download PDF';
+    btn.disabled = false;
+    alert('PDF generation failed. Try screenshotting instead.');
+  });
+}
+
+function restart() {
+  Object.keys(answers).forEach(k => answers[k] = null);
+  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.btn-primary[id^="next-"]').forEach(b => b.disabled = true);
+  document.getElementById('client-name').value = '';
+  goTo(0);
+}
+</script>
+</body>
+</html>
