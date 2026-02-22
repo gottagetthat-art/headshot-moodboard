@@ -45,7 +45,6 @@
   .screen { display: none; }
   .screen.active { display: block; }
 
-  /* PROGRESS */
   .progress {
     display: flex;
     gap: 6px;
@@ -61,7 +60,6 @@
   .progress-dot.done { background: var(--gold); }
   .progress-dot.active { background: var(--light); }
 
-  /* HEADINGS */
   h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 5vw, 42px);
@@ -85,7 +83,6 @@
     font-weight: 300;
   }
 
-  /* INTRO */
   .intro-text {
     max-width: 520px;
     margin: 0 auto 40px;
@@ -95,6 +92,7 @@
     line-height: 1.7;
     font-weight: 300;
   }
+
   .name-input {
     display: block;
     width: 100%;
@@ -114,7 +112,6 @@
   .name-input::placeholder { color: var(--muted); }
   .name-input:focus { border-color: var(--gold); }
 
-  /* OPTION CARDS */
   .options {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -125,24 +122,53 @@
     background: var(--dark2);
     border: 2px solid var(--dark3);
     border-radius: var(--radius);
-    padding: 20px 14px;
+    padding: 22px 16px 18px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
+    position: relative;
   }
   .option-card:hover { border-color: var(--muted); transform: translateY(-2px); }
   .option-card.selected { border-color: var(--gold); background: #1e1a14; }
-  .option-card .emoji { font-size: 26px; margin-bottom: 10px; display: block; }
-  .option-card .label { font-size: 13px; font-weight: 500; color: var(--light); display: block; margin-bottom: 4px; }
-  .option-card .desc { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+  .option-card.selected::after {
+    content: '';
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .option-card .label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--light);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+  .option-card .desc {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .option-card.other-card {
+    border-style: dashed;
+  }
+  .option-card.other-card .label { color: var(--muted); }
 
-  /* OTHER INPUT */
   .other-input-wrap {
     display: none;
     margin-bottom: 24px;
   }
-  .other-input-wrap.visible { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto 24px; }
+  .other-input-wrap.visible {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
   .other-input {
     flex: 1;
     padding: 12px 16px;
@@ -167,7 +193,6 @@
   }
   .skip-link:hover { color: var(--light); }
 
-  /* BUTTONS */
   .btn {
     display: inline-block;
     padding: 14px 36px;
@@ -195,7 +220,6 @@
     margin-top: 8px;
   }
 
-  /* MOOD BOARD */
   #moodboard-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -210,7 +234,6 @@
     display: block;
   }
 
-  /* PDF AREA */
   #pdf-area {
     background: #0e0e0e;
     padding: 32px;
@@ -247,7 +270,6 @@
     margin-bottom: 8px;
   }
 
-  /* IMAGE NOTE */
   .image-note {
     text-align: center;
     font-size: 12px;
@@ -256,7 +278,6 @@
     font-style: italic;
   }
 
-  /* CTA */
   .cta-box {
     background: var(--dark2);
     border: 1px solid var(--dark3);
@@ -288,7 +309,7 @@
     <p class="intro-text">Answer 4 quick questions and I'll put together a personalized set of images that reflect the look and feel we can create for you.</p>
     <input class="name-input" id="client-name" type="text" placeholder="Your first name (optional)" maxlength="40">
     <div class="btn-row">
-      <button class="btn btn-primary" onclick="startQuiz()">Let's Go →</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Let's Go &rarr;</button>
     </div>
   </div>
 
@@ -299,48 +320,41 @@
     <p class="subtitle">Helps me understand the tone that will work best for you.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'industry', 'corporate')">
-        <span class="emoji">🏢</span>
         <span class="label">Corporate / Executive</span>
         <span class="desc">C-suite, finance, consulting</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'real-estate')">
-        <span class="emoji">🏠</span>
         <span class="label">Real Estate</span>
         <span class="desc">Agents, brokers, property</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'healthcare')">
-        <span class="emoji">⚕️</span>
         <span class="label">Healthcare / Legal</span>
         <span class="desc">Doctors, lawyers, professionals</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'entrepreneur')">
-        <span class="emoji">🚀</span>
         <span class="label">Entrepreneur</span>
         <span class="desc">Founders, coaches, consultants</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'creative')">
-        <span class="emoji">🎨</span>
         <span class="label">Creative</span>
         <span class="desc">Designers, marketers, media</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'actor')">
-        <span class="emoji">🎭</span>
         <span class="label">Actor / Talent</span>
         <span class="desc">Film, TV, theatre, modelling</span>
       </div>
-      <div class="option-card" onclick="selectOther(this, 'industry', 'other-industry')">
-        <span class="emoji">✏️</span>
+      <div class="option-card other-card" onclick="selectOther(this, 'industry', 'other-industry')">
         <span class="label">Other</span>
         <span class="desc">Tell us what you do</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-industry-wrap">
       <input class="other-input" id="other-industry" type="text" placeholder="e.g. Mortgage broker, Nurse, HR Manager..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('industry', 1, 2)">Skip →</button>
+      <button class="skip-link" onclick="skipOther('industry', 1, 2)">Skip &rarr;</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
-      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(0)">&larr; Back</button>
+      <button class="btn btn-primary" id="next-1" onclick="goTo(2)" disabled>Next &rarr;</button>
     </div>
   </div>
 
@@ -351,38 +365,33 @@
     <p class="subtitle">Pick the feeling you want your headshot to communicate.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'vibe', 'classic')">
-        <span class="emoji">🎩</span>
-        <span class="label">Classic & Professional</span>
+        <span class="label">Classic &amp; Professional</span>
         <span class="desc">Timeless, authoritative, polished</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'warm')">
-        <span class="emoji">☀️</span>
-        <span class="label">Warm & Approachable</span>
+        <span class="label">Warm &amp; Approachable</span>
         <span class="desc">Friendly, trustworthy, open</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'bold')">
-        <span class="emoji">⚡</span>
-        <span class="label">Bold & Confident</span>
+        <span class="label">Bold &amp; Confident</span>
         <span class="desc">Strong, powerful, commanding</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'relaxed')">
-        <span class="emoji">🌿</span>
-        <span class="label">Natural & Relaxed</span>
+        <span class="label">Natural &amp; Relaxed</span>
         <span class="desc">Casual, authentic, real</span>
       </div>
-      <div class="option-card" onclick="selectOther(this, 'vibe', 'other-vibe')">
-        <span class="emoji">✏️</span>
+      <div class="option-card other-card" onclick="selectOther(this, 'vibe', 'other-vibe')">
         <span class="label">Other</span>
         <span class="desc">Describe your ideal feel</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-vibe-wrap">
       <input class="other-input" id="other-vibe" type="text" placeholder="e.g. Playful, Serious, Mysterious..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('vibe', 2, 3)">Skip →</button>
+      <button class="skip-link" onclick="skipOther('vibe', 2, 3)">Skip &rarr;</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
-      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(1)">&larr; Back</button>
+      <button class="btn btn-primary" id="next-2" onclick="goTo(3)" disabled>Next &rarr;</button>
     </div>
   </div>
 
@@ -393,33 +402,29 @@
     <p class="subtitle">What kind of setting speaks to you?</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'background', 'dark')">
-        <span class="emoji">🌑</span>
-        <span class="label">Dark & Dramatic</span>
-        <span class="desc">Deep greys, blacks — timeless studio look</span>
+        <span class="label">Dark &amp; Dramatic</span>
+        <span class="desc">Deep greys, blacks &mdash; timeless studio look</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'light')">
-        <span class="emoji">⬜</span>
-        <span class="label">Light & Clean</span>
-        <span class="desc">White, soft grey — bright and modern</span>
+        <span class="label">Light &amp; Clean</span>
+        <span class="desc">White, soft grey &mdash; bright and modern</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'environmental')">
-        <span class="emoji">🏙️</span>
         <span class="label">Environmental</span>
         <span class="desc">Office, outdoors, in-context</span>
       </div>
-      <div class="option-card" onclick="selectOther(this, 'background', 'other-background')">
-        <span class="emoji">✏️</span>
+      <div class="option-card other-card" onclick="selectOther(this, 'background', 'other-background')">
         <span class="label">Not Sure</span>
         <span class="desc">Describe or skip ahead</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-background-wrap">
       <input class="other-input" id="other-background" type="text" placeholder="e.g. Something warm, textured, colourful..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('background', 3, 4)">Skip →</button>
+      <button class="skip-link" onclick="skipOther('background', 3, 4)">Skip &rarr;</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(2)">← Back</button>
-      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next →</button>
+      <button class="btn btn-outline" onclick="goTo(2)">&larr; Back</button>
+      <button class="btn btn-primary" id="next-3" onclick="goTo(4)" disabled>Next &rarr;</button>
     </div>
   </div>
 
@@ -430,33 +435,29 @@
     <p class="subtitle">Think about what you'd wear to meet an important client.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'formality', 'formal')">
-        <span class="emoji">👔</span>
         <span class="label">Full Formal</span>
-        <span class="desc">Suit, tie, blazer — sharp and structured</span>
+        <span class="desc">Suit, tie, blazer &mdash; sharp and structured</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'business-casual')">
-        <span class="emoji">👕</span>
         <span class="label">Business Casual</span>
-        <span class="desc">Blouse, smart top — polished but relaxed</span>
+        <span class="desc">Blouse, smart top &mdash; polished but relaxed</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'casual')">
-        <span class="emoji">🧥</span>
         <span class="label">Smart Casual</span>
         <span class="desc">Clean, put-together but comfortable</span>
       </div>
-      <div class="option-card" onclick="selectOther(this, 'formality', 'other-formality')">
-        <span class="emoji">✏️</span>
+      <div class="option-card other-card" onclick="selectOther(this, 'formality', 'other-formality')">
         <span class="label">Not Sure</span>
         <span class="desc">Tell us or skip ahead</span>
       </div>
     </div>
     <div class="other-input-wrap" id="other-formality-wrap">
       <input class="other-input" id="other-formality" type="text" placeholder="e.g. Somewhere between formal and casual..." maxlength="60">
-      <button class="skip-link" onclick="skipOther('formality', 4, 5)">Skip →</button>
+      <button class="skip-link" onclick="skipOther('formality', 4, 5)">Skip &rarr;</button>
     </div>
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="goTo(3)">← Back</button>
-      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board →</button>
+      <button class="btn btn-outline" onclick="goTo(3)">&larr; Back</button>
+      <button class="btn btn-primary" id="next-4" onclick="showResults()" disabled>See My Mood Board &rarr;</button>
     </div>
   </div>
 
@@ -472,7 +473,7 @@
       <div class="pdf-header">
         <div>
           <div class="pdf-title" id="pdf-client-name"></div>
-          <div class="pdf-subtitle">Session Mood Board · Trevor Walker Photography</div>
+          <div class="pdf-subtitle">Session Mood Board &middot; Trevor Walker Photography</div>
         </div>
         <div class="pdf-logo">
           <img src="https://images.squarespace-cdn.com/content/v1/5a2995c149fc2b7c1a2c6f21/577c01b2-3fc8-4f02-a066-796b101a6137/Trevor-Walker-Photography_white_low-res.png" alt="TWP">
@@ -482,15 +483,15 @@
       <div id="moodboard-grid"></div>
     </div>
 
-    <p class="image-note">⚡ More images coming — this board will get smarter with a larger library.</p>
+    <p class="image-note">More images coming &mdash; this board will get smarter with a larger library.</p>
 
     <div class="btn-row">
-      <button class="btn btn-outline" id="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
-      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session →</a>
+      <button class="btn btn-outline" id="pdf-btn" onclick="downloadPDF()">Download PDF</button>
+      <a class="btn btn-primary" href="https://www.trevorwalkerphotography.com/book-nowga" target="_blank">Book My Session &rarr;</a>
     </div>
 
     <div class="cta-box">
-      <strong>📬 Send this to Trevor before your session</strong>
+      <strong>Send this to Trevor before your session</strong>
       <p>Download your PDF and share it with Trevor so he can prepare the right lighting, backgrounds, and direction for your exact look.</p>
     </div>
 
@@ -502,67 +503,36 @@
 </div>
 
 <script>
-const IMAGES = [
-  {
-    url: "imgs/img1.jpg",
-    background: "dark", formality: "business-casual", vibe: "classic",
-    industry: ["corporate", "healthcare", "legal", "entrepreneur"]
-  },
-  {
-    url: "imgs/img2.jpg",
-    background: "dark", formality: "business-casual", vibe: "warm",
-    industry: ["entrepreneur", "real-estate", "corporate"]
-  },
-  {
-    url: "imgs/img3.jpg",
-    background: "environmental", formality: "casual", vibe: "bold",
-    industry: ["actor", "creative", "entrepreneur"]
-  },
-  {
-    url: "imgs/img4.jpg",
-    background: "dark", formality: "business-casual", vibe: "warm",
-    industry: ["real-estate", "entrepreneur", "healthcare"]
-  },
-  {
-    url: "imgs/img5.jpg",
-    background: "dark", formality: "business-casual", vibe: "bold",
-    industry: ["entrepreneur", "creative", "actor"]
-  },
-  {
-    url: "imgs/img6.jpg",
-    background: "dark", formality: "casual", vibe: "relaxed",
-    industry: ["creative", "entrepreneur", "real-estate"]
-  },
-  {
-    url: "imgs/img7.jpg",
-    background: "light", formality: "formal", vibe: "bold",
-    industry: ["real-estate", "healthcare", "corporate", "legal"]
-  },
-  {
-    url: "imgs/img8.jpg",
-    background: "environmental", formality: "business-casual", vibe: "classic",
-    industry: ["entrepreneur", "corporate", "real-estate", "creative"]
-  }
+var IMAGES = [
+  { url: "imgs/img1.jpg", background: "dark", formality: "business-casual", vibe: "classic", industry: ["corporate", "healthcare", "legal", "entrepreneur"] },
+  { url: "imgs/img2.jpg", background: "dark", formality: "business-casual", vibe: "warm", industry: ["entrepreneur", "real-estate", "corporate"] },
+  { url: "imgs/img3.jpg", background: "environmental", formality: "casual", vibe: "bold", industry: ["actor", "creative", "entrepreneur"] },
+  { url: "imgs/img4.jpg", background: "dark", formality: "business-casual", vibe: "warm", industry: ["real-estate", "entrepreneur", "healthcare"] },
+  { url: "imgs/img5.jpg", background: "dark", formality: "business-casual", vibe: "bold", industry: ["entrepreneur", "creative", "actor"] },
+  { url: "imgs/img6.jpg", background: "dark", formality: "casual", vibe: "relaxed", industry: ["creative", "entrepreneur", "real-estate"] },
+  { url: "imgs/img7.jpg", background: "light", formality: "formal", vibe: "bold", industry: ["real-estate", "healthcare", "corporate", "legal"] },
+  { url: "imgs/img8.jpg", background: "environmental", formality: "business-casual", vibe: "classic", industry: ["entrepreneur", "corporate", "real-estate", "creative"] }
 ];
 
-const answers = { industry: null, vibe: null, background: null, formality: null };
-const otherText = { industry: '', vibe: '', background: '', formality: '' };
-const STEPS = 4;
+var answers = { industry: null, vibe: null, background: null, formality: null };
+var otherText = { industry: '', vibe: '', background: '', formality: '' };
+var STEPS = 4;
 
 function buildProgress(step) {
-  const el = document.getElementById(`progress-${step}`);
+  var el = document.getElementById('progress-' + step);
   if (!el) return;
   el.innerHTML = '';
-  for (let i = 1; i <= STEPS; i++) {
-    const dot = document.createElement('div');
+  for (var i = 1; i <= STEPS; i++) {
+    var dot = document.createElement('div');
     dot.className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
     el.appendChild(dot);
   }
 }
 
 function goTo(step) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(`screen-${step}`).classList.add('active');
+  var screens = document.querySelectorAll('.screen');
+  for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
+  document.getElementById('screen-' + step).classList.add('active');
   if (step > 0 && step <= 4) buildProgress(step);
   window.scrollTo(0, 0);
 }
@@ -570,94 +540,86 @@ function goTo(step) {
 function startQuiz() { goTo(1); }
 
 function select(el, key, value) {
-  const parent = el.parentElement;
-  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  var cards = el.parentElement.querySelectorAll('.option-card');
+  for (var i = 0; i < cards.length; i++) cards[i].classList.remove('selected');
   el.classList.add('selected');
   answers[key] = value;
   otherText[key] = '';
-  // Hide other input
-  const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
-  const step = stepMap[key];
-  const wrap = document.getElementById(`other-${key}-wrap`);
+  var stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
+  var wrap = document.getElementById('other-' + key + '-wrap');
   if (wrap) wrap.classList.remove('visible');
-  const nextBtn = document.getElementById(`next-${step}`);
-  if (nextBtn) nextBtn.disabled = false;
+  var btn = document.getElementById('next-' + stepMap[key]);
+  if (btn) btn.disabled = false;
 }
 
 function selectOther(el, key, inputId) {
-  const parent = el.parentElement;
-  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  var cards = el.parentElement.querySelectorAll('.option-card');
+  for (var i = 0; i < cards.length; i++) cards[i].classList.remove('selected');
   el.classList.add('selected');
   answers[key] = 'other';
-  const wrap = document.getElementById(`${inputId}-wrap`);
+  var wrap = document.getElementById(inputId + '-wrap');
   if (wrap) wrap.classList.add('visible');
-  document.getElementById(inputId).focus();
-  // Enable next — other is always skippable
-  const stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
-  const nextBtn = document.getElementById(`next-${stepMap[key]}`);
-  if (nextBtn) nextBtn.disabled = false;
+  var input = document.getElementById(inputId);
+  if (input) input.focus();
+  var stepMap = { industry: 1, vibe: 2, background: 3, formality: 4 };
+  var btn = document.getElementById('next-' + stepMap[key]);
+  if (btn) btn.disabled = false;
 }
 
 function skipOther(key, currentStep, nextStep) {
   answers[key] = 'other';
   otherText[key] = '';
-  if (nextStep === 5) {
-    showResults();
-  } else {
-    goTo(nextStep);
-  }
+  if (nextStep === 5) showResults();
+  else goTo(nextStep);
 }
 
-// Watch other text inputs
-['industry', 'vibe', 'background', 'formality'].forEach(key => {
-  const inputId = `other-${key}`;
-  const el = document.getElementById(inputId);
-  if (el) {
-    el.addEventListener('input', () => {
-      otherText[key] = el.value.trim();
-    });
-  }
-});
+var keys = ['industry', 'vibe', 'background', 'formality'];
+for (var k = 0; k < keys.length; k++) {
+  (function(key) {
+    var el = document.getElementById('other-' + key);
+    if (el) el.addEventListener('input', function() { otherText[key] = this.value.trim(); });
+  })(keys[k]);
+}
 
 function scoreImage(img) {
-  let score = 0;
-  // 'other' answers get partial score against all images to show variety
+  var score = 0;
   if (answers.industry === 'other') score += 1;
-  else if (img.industry.includes(answers.industry)) score += 3;
+  else if (img.industry.indexOf(answers.industry) !== -1) score += 3;
   if (answers.vibe === 'other') score += 1;
   else if (img.vibe === answers.vibe) score += 2;
-  if (answers.background === 'other' || !answers.background) score += 1;
+  if (!answers.background || answers.background === 'other') score += 1;
   else if (img.background === answers.background) score += 2;
-  if (answers.formality === 'other' || !answers.formality) score += 1;
+  if (!answers.formality || answers.formality === 'other') score += 1;
   else if (img.formality === answers.formality) score += 1;
-  // Tiebreaker: small random nudge so same-score images shuffle
   score += Math.random() * 0.4;
   return score;
 }
 
+var labelMap = {
+  industry: { corporate: 'Corporate/Executive', 'real-estate': 'Real Estate', healthcare: 'Healthcare/Legal', entrepreneur: 'Entrepreneur', creative: 'Creative', actor: 'Actor/Talent' },
+  vibe: { classic: 'Classic & Professional', warm: 'Warm & Approachable', bold: 'Bold & Confident', relaxed: 'Natural & Relaxed' },
+  background: { dark: 'Dark Background', light: 'Light/Clean', environmental: 'Environmental' },
+  formality: { formal: 'Full Formal', 'business-casual': 'Business Casual', casual: 'Smart Casual' }
+};
+
 function getTagLabel(key, val) {
-  const labels = {
-    industry: { corporate: 'Corporate/Executive', 'real-estate': 'Real Estate', healthcare: 'Healthcare/Legal', entrepreneur: 'Entrepreneur', creative: 'Creative', actor: 'Actor/Talent', other: '' },
-    vibe: { classic: 'Classic & Professional', warm: 'Warm & Approachable', bold: 'Bold & Confident', relaxed: 'Natural & Relaxed', other: '' },
-    background: { dark: 'Dark Background', light: 'Light/Clean', environmental: 'Environmental', other: '' },
-    formality: { formal: 'Full Formal', 'business-casual': 'Business Casual', casual: 'Smart Casual', other: '' }
-  };
   if (val === 'other' && otherText[key]) return otherText[key];
   if (val === 'other') return null;
-  return labels[key]?.[val] || val;
+  return labelMap[key] ? labelMap[key][val] : val;
 }
 
 function showResults() {
-  const name = document.getElementById('client-name').value.trim();
+  var name = document.getElementById('client-name').value.trim();
+  var scored = IMAGES.map(function(img) {
+    return { url: img.url, score: scoreImage(img) };
+  });
+  scored.sort(function(a, b) { return b.score - a.score; });
+  var top = scored.slice(0, 6);
 
-  const scored = IMAGES.map(img => ({ ...img, score: scoreImage(img) }));
-  scored.sort((a, b) => b.score - a.score);
-  const top = scored.slice(0, 6);
-
-  const grid = document.getElementById('moodboard-grid');
+  var grid = document.getElementById('moodboard-grid');
   grid.innerHTML = '';
-  top.forEach(img => {
-    const el = document.createElement('img');
+  top.forEach(function(img) {
+    var el = document.createElement('img');
     el.src = img.url;
     el.className = 'mb-image';
     el.alt = 'Headshot example';
@@ -665,17 +627,17 @@ function showResults() {
     grid.appendChild(el);
   });
 
-  const nameLabel = name ? `${name}'s` : 'Your';
+  var nameLabel = name ? name + "'s" : 'Your';
   document.getElementById('results-name-label').textContent = nameLabel;
-  document.getElementById('pdf-client-name').textContent = `${nameLabel} Mood Board`;
+  document.getElementById('pdf-client-name').textContent = nameLabel + ' Mood Board';
 
-  const tagsEl = document.getElementById('pdf-tags');
+  var tagsEl = document.getElementById('pdf-tags');
   tagsEl.innerHTML = '';
-  ['industry', 'vibe', 'background', 'formality'].forEach(key => {
+  ['industry', 'vibe', 'background', 'formality'].forEach(function(key) {
     if (!answers[key]) return;
-    const label = getTagLabel(key, answers[key]);
+    var label = getTagLabel(key, answers[key]);
     if (!label) return;
-    const span = document.createElement('span');
+    var span = document.createElement('span');
     span.className = 'pdf-tag';
     span.textContent = label;
     tagsEl.appendChild(span);
@@ -685,37 +647,41 @@ function showResults() {
 }
 
 function downloadPDF() {
-  const btn = document.getElementById('pdf-btn');
+  var btn = document.getElementById('pdf-btn');
   btn.textContent = 'Generating...';
   btn.disabled = true;
-
-  const el = document.getElementById('pdf-area');
+  var el = document.getElementById('pdf-area');
   html2canvas(el, { backgroundColor: '#0e0e0e', scale: 2, useCORS: true, allowTaint: false })
-    .then(canvas => {
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-      const w = pdf.internal.pageSize.getWidth();
-      const h = (canvas.height * w) / canvas.width;
+    .then(function(canvas) {
+      var jsPDF = window.jspdf.jsPDF;
+      var pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      var w = pdf.internal.pageSize.getWidth();
+      var h = (canvas.height * w) / canvas.width;
       pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
-      const name = document.getElementById('client-name').value.trim() || 'moodboard';
-      pdf.save(`${name.toLowerCase().replace(/\s+/g, '-')}-moodboard.pdf`);
-      btn.textContent = '⬇ Download PDF';
+      var name = document.getElementById('client-name').value.trim() || 'moodboard';
+      pdf.save(name.toLowerCase().replace(/\s+/g, '-') + '-moodboard.pdf');
+      btn.textContent = 'Download PDF';
       btn.disabled = false;
     })
-    .catch(() => {
-      btn.textContent = '⬇ Download PDF';
+    .catch(function() {
+      btn.textContent = 'Download PDF';
       btn.disabled = false;
-      alert('PDF generation failed — try screenshotting instead.');
+      alert('PDF generation failed. Try screenshotting instead.');
     });
 }
 
 function restart() {
-  Object.keys(answers).forEach(k => answers[k] = null);
-  Object.keys(otherText).forEach(k => otherText[k] = '');
-  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  document.querySelectorAll('.btn-primary[id^="next-"]').forEach(b => b.disabled = true);
-  document.querySelectorAll('.other-input-wrap').forEach(w => w.classList.remove('visible'));
-  document.querySelectorAll('.other-input').forEach(i => i.value = '');
+  var k, i;
+  for (k in answers) answers[k] = null;
+  for (k in otherText) otherText[k] = '';
+  var cards = document.querySelectorAll('.option-card');
+  for (i = 0; i < cards.length; i++) cards[i].classList.remove('selected');
+  var btns = document.querySelectorAll('.btn-primary[id^="next-"]');
+  for (i = 0; i < btns.length; i++) btns[i].disabled = true;
+  var wraps = document.querySelectorAll('.other-input-wrap');
+  for (i = 0; i < wraps.length; i++) wraps[i].classList.remove('visible');
+  var inputs = document.querySelectorAll('.other-input');
+  for (i = 0; i < inputs.length; i++) inputs[i].value = '';
   document.getElementById('client-name').value = '';
   goTo(0);
 }
