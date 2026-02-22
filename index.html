@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Mood Board | Trevor Walker Photography</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -139,6 +140,14 @@
     border-radius: 50%;
     background: var(--gold);
   }
+  .option-card .icon {
+    font-size: 24px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  .option-card.selected .icon { opacity: 1; }
   .option-card .label {
     font-size: 13px;
     font-weight: 600;
@@ -153,9 +162,8 @@
     font-weight: 300;
     line-height: 1.5;
   }
-  .option-card.other-card {
-    border-style: dashed;
-  }
+  .option-card.other-card { border-style: dashed; }
+  .option-card.other-card .icon { color: var(--muted); }
   .option-card.other-card .label { color: var(--muted); }
 
   .other-input-wrap {
@@ -320,30 +328,37 @@
     <p class="subtitle">Helps me understand the tone that will work best for you.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'industry', 'corporate')">
+        <i class="fa-solid fa-building icon"></i>
         <span class="label">Corporate / Executive</span>
         <span class="desc">C-suite, finance, consulting</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'real-estate')">
+        <i class="fa-solid fa-house icon"></i>
         <span class="label">Real Estate</span>
         <span class="desc">Agents, brokers, property</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'healthcare')">
+        <i class="fa-solid fa-briefcase icon"></i>
         <span class="label">Healthcare / Legal</span>
         <span class="desc">Doctors, lawyers, professionals</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'entrepreneur')">
+        <i class="fa-solid fa-rocket icon"></i>
         <span class="label">Entrepreneur</span>
         <span class="desc">Founders, coaches, consultants</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'creative')">
+        <i class="fa-solid fa-palette icon"></i>
         <span class="label">Creative</span>
         <span class="desc">Designers, marketers, media</span>
       </div>
       <div class="option-card" onclick="select(this, 'industry', 'actor')">
+        <i class="fa-solid fa-masks-theater icon"></i>
         <span class="label">Actor / Talent</span>
         <span class="desc">Film, TV, theatre, modelling</span>
       </div>
       <div class="option-card other-card" onclick="selectOther(this, 'industry', 'other-industry')">
+        <i class="fa-solid fa-pen icon"></i>
         <span class="label">Other</span>
         <span class="desc">Tell us what you do</span>
       </div>
@@ -365,22 +380,27 @@
     <p class="subtitle">Pick the feeling you want your headshot to communicate.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'vibe', 'classic')">
+        <i class="fa-solid fa-star icon"></i>
         <span class="label">Classic &amp; Professional</span>
         <span class="desc">Timeless, authoritative, polished</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'warm')">
+        <i class="fa-solid fa-sun icon"></i>
         <span class="label">Warm &amp; Approachable</span>
         <span class="desc">Friendly, trustworthy, open</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'bold')">
+        <i class="fa-solid fa-bolt icon"></i>
         <span class="label">Bold &amp; Confident</span>
         <span class="desc">Strong, powerful, commanding</span>
       </div>
       <div class="option-card" onclick="select(this, 'vibe', 'relaxed')">
+        <i class="fa-solid fa-leaf icon"></i>
         <span class="label">Natural &amp; Relaxed</span>
         <span class="desc">Casual, authentic, real</span>
       </div>
       <div class="option-card other-card" onclick="selectOther(this, 'vibe', 'other-vibe')">
+        <i class="fa-solid fa-pen icon"></i>
         <span class="label">Other</span>
         <span class="desc">Describe your ideal feel</span>
       </div>
@@ -402,18 +422,22 @@
     <p class="subtitle">What kind of setting speaks to you?</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'background', 'dark')">
+        <i class="fa-solid fa-moon icon"></i>
         <span class="label">Dark &amp; Dramatic</span>
         <span class="desc">Deep greys, blacks &mdash; timeless studio look</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'light')">
+        <i class="fa-regular fa-sun icon"></i>
         <span class="label">Light &amp; Clean</span>
         <span class="desc">White, soft grey &mdash; bright and modern</span>
       </div>
       <div class="option-card" onclick="select(this, 'background', 'environmental')">
+        <i class="fa-solid fa-city icon"></i>
         <span class="label">Environmental</span>
         <span class="desc">Office, outdoors, in-context</span>
       </div>
       <div class="option-card other-card" onclick="selectOther(this, 'background', 'other-background')">
+        <i class="fa-solid fa-question icon"></i>
         <span class="label">Not Sure</span>
         <span class="desc">Describe or skip ahead</span>
       </div>
@@ -435,18 +459,22 @@
     <p class="subtitle">Think about what you'd wear to meet an important client.</p>
     <div class="options">
       <div class="option-card" onclick="select(this, 'formality', 'formal')">
+        <i class="fa-solid fa-user-tie icon"></i>
         <span class="label">Full Formal</span>
         <span class="desc">Suit, tie, blazer &mdash; sharp and structured</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'business-casual')">
+        <i class="fa-solid fa-shirt icon"></i>
         <span class="label">Business Casual</span>
         <span class="desc">Blouse, smart top &mdash; polished but relaxed</span>
       </div>
       <div class="option-card" onclick="select(this, 'formality', 'casual')">
+        <i class="fa-solid fa-person icon"></i>
         <span class="label">Smart Casual</span>
         <span class="desc">Clean, put-together but comfortable</span>
       </div>
       <div class="option-card other-card" onclick="selectOther(this, 'formality', 'other-formality')">
+        <i class="fa-solid fa-question icon"></i>
         <span class="label">Not Sure</span>
         <span class="desc">Tell us or skip ahead</span>
       </div>
